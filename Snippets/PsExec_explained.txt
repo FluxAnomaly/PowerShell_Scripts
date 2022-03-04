@@ -1,0 +1,34 @@
+Using PsExec:
+https://docs.microsoft.com/en-us/sysinternals/downloads/psexec
+
+https://docs.microsoft.com/en-us/sysinternals/
+
+PsExec Explained:
+https://www.itprotoday.com/compute-engines/psexec
+
+PsExec is a command-line tool that lets you execute processes on remote systems and redirect console applications' output to the local system so that these applications appear to be running locally.
+
+PsExec's ability to redirect the input and output of console applications is what makes the tool a versatile systems management utility.
+
+----------------------------------------------------------------
+To run an executable on the local system on the remote system, specify the -c switch and the file's local path. 
+The -c switch directs PsExec to copy the specified executable to the remote system for execution and delete the executable from the remote system when the program has finished running.
+
+----------------------------------------------------------------
+An even more powerful use of PsExec's console-redirection capability is to run a command prompt on a remote system as if the command prompt were running locally. This use of PsExec is similar to running a Telnet client on the local machine and connecting to a Telnet service on the remote machine, but you don't need to have the Telnet service, or any other special service, running on the remote system. Simply execute the command:
+
+psexec \\remote cmd
+
+----------------------------------------------------------------
+
+
+
+
+
+
+----------------------------------------------------------------
+----------------------------------------------------------------
+Inside PsExec
+PsExec starts an executable on a remote system and controls the input and output streams of the executable's process so that you can interact with the executable from the local system. PsExec does so by extracting from its executable image an embedded Windows service named Psexesvc and copying it to the Admin$ share of the remote system. PsExec then uses the Windows Service Control Manager API, which has a remote interface, to start the Psexesvc service on the remote system.
+
+As with many of the tools in the PsTools suite, PsExec's ability to run processes remotely requires that both the local and remote computers have file and print sharing (i.e., the Workstation and Server services) enabled and that the default Admin$ share (a hidden share that maps to the \windows directory) is defined on the remote system. 
